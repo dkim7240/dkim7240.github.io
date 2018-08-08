@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Edmonds-Karp Algorithm</title>
+
+  <style type="text/css">
+    body, select {
+      font: 10pt sans;
+    }
+    #mynetwork {
+      position:relative;
+      width: 800px;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+    table.legend_table {
+      font-size: 11px;
+      border-width:1px;
+      border-color:#d3d3d3;
+      border-style:solid;
+    }
+    table.legend_table,td {
+      border-width:1px;
+      border-color:#d3d3d3;
+      border-style:solid;
+      padding: 2px;
+    }
+    div.table_content {
+      width:80px;
+      text-align:center;
+    }
+    div.table_description {
+      width:100px;
+    }
+
+    #operation {
+      font-size:28px;
+    }
+
+    #capacity-popUp {
+      display:none;
+      position:absolute;
+      top:350px;
+      left:170px;
+      z-index:299;
+      width:250px;
+      height:120px;
+      background-color: #f9f9f9;
+      border-style:solid;
+      border-width:3px;
+      border-color: #5394ed;
+      padding:10px;
+      text-align: center;
+    }
+
+    #network-popUp {
+      display:none;
+      position:absolute;
+      top:350px;
+      left:170px;
+      z-index:299;
+      width:250px;
+      height:120px;
+      background-color: #f9f9f9;
+      border-style:solid;
+      border-width:3px;
+      border-color: #5394ed;
+      padding:10px;
+      text-align: center;
+    }
+  </style>
+<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+<link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="EdmondsKarp.js"></script>
+
+</head>
+
+<body onload="init();">
+<h2>Edmonds-Karp Visualization</h2>
+<p style="width: 700px; font-size:14px; text-align: justify;">
+</p>
+
+<p>
+  <label for="locale">Select the language:</label>
+  <select id="locale" onchange="draw();">
+    <option value="en">en</option>
+    <option value="de">de</option>
+    <option value="es">es</option>
+    <option value="it">it</option>
+    <option value="nl">nl</option>
+    <option value="pt-br">pt</option>
+    <option value="ru">ru</option>
+  </select>
+</p>
+
+<div id="capacity-popUp">
+    <table style="margin:auto;">
+        <tr>
+            <td>capacity</td><td><input id="edge-capacity" value="" /></td>
+        </tr>
+    </table>
+    
+  <input type="button" value="save" id="saveEdgeButton" />
+  <input type="button" value="cancel" id="cancelEdgeButton" />
+</div>
+<h3>To find the max flow, label the source node as s and the sink node as t, if not
+        already set.
+    </h3>
+    <br>
+<h3> EditEdge and EditNode are disabled. To edit, use 'Delete' and then 'Add'.
+    </h3>
+<div id="network-popUp">
+   
+  <span id="operation">node</span> <br>
+  <table style="margin:auto;">
+      <!--
+      <tr>
+    <td>id</td><td><input id="node-id" value="new value" /></td>
+  </tr>
+        -->
+    <tr>
+      <td>label</td><td><input id="node-label" value="" /></td>
+    </tr></table>
+  <input type="button" value="save" id="saveButton" />
+  <input type="button" value="cancel" id="cancelButton" />
+</div>
+<br />
+<div id="mynetwork"></div>
+<input type="button" id="findMaxFlowButton" value="Find Max Flow" onclick="maxFlow(nodes.get('s'), nodes.get('t'))" style="display: inline-block"></button>
+<input type="button" id="resetButton" value="Reset" onclick="reset()"></button>
+
+</body>
+</html>
+
+<script>
+    //document.getElementById("findMaxFlowButton").onclick = maxFlow(nodes.get('s'), nodes.get('t'));
+</script>
