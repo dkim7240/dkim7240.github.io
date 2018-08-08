@@ -148,7 +148,7 @@ function draw() {
           flows.remove(reverseEdge(data.edges[0]));
           capacities.remove(data.edges[0]);
           capacities.remove(reverseEdge(data.edges[0]));
-          //edges.remove(data.from.toString() + '-' + data.to.toString());
+        //  edges.remove(data.from.toString() + data.to.toString());
           callback(data);
       },
 
@@ -203,9 +203,14 @@ function saveCap(data)
 {
     var edgeId = data.from + data.to;
     flows.add({id: edgeId , value: 0});
-    flows.add({id: reverseEdge(edgeId), value: 0});
+
+    /*
+    if(flows.get(reverseEdge(edgeId)) == null){
+      flows.add({id: reverseEdge(edgeId), value: 0});
+    }
+    */
     capacities.add({id: edgeId, value: parseInt(document.getElementById('edge-capacity').value)});
-    capacities.add({id: reverseEdge(edgeId), value: 0});
+    // capacities.add({id: reverseEdge(edgeId), value: 0});
     
     var flow = flows.get(edgeId);
     var capacity = capacities.get(edgeId);
@@ -257,6 +262,13 @@ function maxFlow(source, sink)
 {
       var INF = 987654321;
       var totalFlow = 0;
+
+    flows.forEach(function (element){
+      if(flows.get(reverseEdge(element.id)) == null){
+        flows.add({id: reverseEdge(element.id), value: 0});
+        capacities.add({id: reverseEdge(element.id), value: 0});
+      }
+    });
 
       /*
       edges.forEach(function (element){
