@@ -69,6 +69,11 @@
       padding:10px;
       text-align: center;
     }
+
+    #result {
+      font-size: 300%;
+    }
+
   </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
@@ -108,7 +113,7 @@
         already set.
     </h3>
     <br>
-<h3> EditEdge and EditNode are disabled. To edit, use 'Delete' and then 'Add'.
+<h3> EditEdge and EditNode are disabled temporarily due to technical issues. To edit, use 'Delete' and then 'Add'.
     </h3>
 <div id="network-popUp">
    
@@ -126,8 +131,11 @@
   <input type="button" value="cancel" id="cancelButton" />
 </div>
 <br />
-<div id="mynetwork"></div>
-<input type="button" id="findMaxFlowButton" value="Find Max Flow" onclick="maxFlow(nodes.get('s'), nodes.get('t'))" style="display: inline-block"></button>
+<div id="mynetwork"> </div>
+<div id="result"></div>
+<input type="button" id="findMaxFlowButton" value="Find Max Flow Immediately" onclick="maxFlow(nodes.get('s'), nodes.get('t'))" style="display: inline-block"></button>
+<input type="button" id="findMaxFlowPrev" value="Find Max Flow Step by Step (Prev)" onclick="prev()" style="display: inline-block"></button>
+<input type="button" id="findMaxFlowNext" value="Find Max Flow Step by Step (Next)" onclick="next(false)" style="display: inline-block"></button>
 <input type="button" id="resetButton" value="Reset" onclick="reset()"></button>
 
 </body>
